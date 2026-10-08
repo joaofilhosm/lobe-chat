@@ -1551,6 +1551,7 @@ export class AiAgentService {
         },
         runContext,
         {
+          acceptsFileWorks: params.acceptsFileWorks,
           acceptsMemberRuntimeEnd: params.acceptsMemberRuntimeEnd,
           approvalClaim,
           approvalSourceOperationId,
