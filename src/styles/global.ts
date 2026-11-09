@@ -26,6 +26,49 @@ const genGlobalStyle = ({ token }: { prefixCls: string; token: Theme }) => css`
     }
   }
 
+  /* Clinical-editorial accent. The UI stays monochrome; this deep teal marks focus,
+     selection and the active state only, so it never competes with content. */
+  :root {
+    --app-accent: #0f766e;
+    --app-font-display:
+      'Source Serif 4', Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Noto Serif',
+      serif;
+  }
+
+  html[data-theme='dark'] {
+    --app-accent: #5ec9bc;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Zero specificity (:where), so any component style still wins. */
+  :where(h1, h2, h3) {
+    font-family: var(--app-font-display);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  :where(p, li) {
+    text-wrap: pretty;
+  }
+
+  :where(a, button, input, textarea, select, summary, [role='button'], [role='tab'], [tabindex]):focus-visible {
+    outline: 2px solid var(--app-accent);
+    outline-offset: 2px;
+  }
+
+  :where(a, button, [role='button'], [role='tab'], [role='menuitem'], label, summary) {
+    touch-action: manipulation;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--app-accent) 24%, transparent);
+  }
+
   body {
     /* Own stacking context, otherwise render black edges will appear. Must NOT
        be a transform-based hack: a transform on body rebases every position:

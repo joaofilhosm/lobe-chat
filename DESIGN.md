@@ -10,7 +10,7 @@ themeable:
     options:
       [red, orange, gold, yellow, lime, green, cyan, blue, geekblue, purple, magenta, volcano]
   neutralColor:
-    default: ~ # the built-in `gray` scale when unset
+    default: sage # green-grey scale when unset (was `gray`); hex values below are the former gray defaults, so build against token names
     options: [mauve, slate, sage, olive, sand]
 colors:
   # Semantic tokens (lobe-ui token names) — the real contract components consume via
@@ -71,9 +71,9 @@ spacing:
   XL: 32
 radius:
   borderRadiusXS: 4 # tags, chips
-  borderRadiusSM: 6 # inputs, small controls
-  borderRadius: 8 # default — buttons, cards
-  borderRadiusLG: 12 # menus, modals, large surfaces
+  borderRadiusSM: 8 # inputs, small controls
+  borderRadius: 10 # default — buttons, cards
+  borderRadiusLG: 14 # menus, modals, large surfaces
 controls:
   controlHeightSM: 28
   controlHeight: 36 # default (lobe-ui base)
@@ -117,11 +117,17 @@ Applying tokens in components. The text ramp and the functional tints are full t
 - Headings — `fontSizeHeading1`–`fontSizeHeading5` (38 → 16px) title pages and sections; pair with `fontWeightStrong` (600).
 - Code & numbers — the `fontFamilyCode` stack; prefer tabular figures when numbers must align.
 
+## Accent & display type
+
+The product stays monochrome; one deep-teal accent (`--app-accent`, `#0f766e` light / `#5ec9bc` dark) marks keyboard focus, text selection and the active tab. It is not a brand fill: do not use it for buttons or backgrounds. Page and section titles (`h1`–`h3`) use a system serif stack (`--app-font-display`: Source Serif 4, Charter, Iowan Old Style, Georgia) with balanced wrapping, while UI text stays Geist. The serif is the one expressive element, so do not add a second display face.
+
 ## Layout
 
 Spacing follows a 4px scale via lobe-ui padding/margin tokens: `XXS` 4, `XS` 8, `SM` 12, base 16, `MD` 20, `LG` 24, `XL` 32. Keep a clear rhythm — tight space inside a group (8px), more between groups (16px), most between sections (24–32px). Cards use 16–24px padding.
 
-The 4px scale governs gaps, padding, and margins — and only those. Two things are deliberately not on it: radius is a separate scale (see [Shapes](#shapes); it includes a 6px step, `borderRadiusSM`), so never reuse a radius value as spacing; and icon pixel sizes (12 / 14 / 16 / 18 / 20) and 1px hairline borders are dimensions, not spacing. Off-scale spacing values (6, 10, 13…) are drift — round to the nearest scale step. Reserve a one-off off-scale value for genuine optical tuning, never as a default.
+The 4px scale governs gaps, padding, and margins — and only those. Two things are deliberately not on it: radius is a separate scale (see [Shapes](#shapes); it includes an 8px step, `borderRadiusSM`), so never reuse a radius value as spacing; and icon pixel sizes (12 / 14 / 16 / 18 / 20) and 1px hairline borders are dimensions, not spacing. Off-scale spacing values (6, 10, 13…) are drift — round to the nearest scale step. Reserve a one-off off-scale value for genuine optical tuning, never as a default.
+
+Breakpoints: mobile is below 576px (its own route tree and bottom tab bar), tablet is 576–1023px, desktop is 1024px and up. On tablet the nav panel collapses automatically and reopens when the window widens, but only if the app collapsed it; a manual choice is never overridden. On touch layouts every tap target is at least 44×44px.
 
 Layouts must work across appearances and form factors: every surface ships light and dark and desktop and mobile variants. Mobile is not an afterthought — `src/routes/(mobile)` and `.mobile`/`.desktop` component variants exist for exactly this. Center primary content and let side padding grow at wider breakpoints.
 
@@ -146,9 +152,9 @@ When motion helps — revealing, moving, or connecting elements — keep it shor
 Radii stay soft but tight, and one family per view:
 
 - `borderRadiusXS` 4px — tags, chips
-- `borderRadiusSM` 6px — inputs, small controls
-- `borderRadius` 8px — the default, for buttons and cards
-- `borderRadiusLG` 12px — menus, modals, large surfaces
+- `borderRadiusSM` 8px — inputs, small controls
+- `borderRadius` 10px — the default, for buttons and cards
+- `borderRadiusLG` 14px — menus, modals, large surfaces
 
 Reserve fully round (`9999px`) for pills, avatars, and circular icon buttons. Don't mix rounded and sharp corners in one view.
 

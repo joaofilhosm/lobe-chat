@@ -92,7 +92,9 @@ const AppTheme = memo<AppThemeProps>(
   ({
     children,
     defaultPrimaryColor,
-    defaultNeutralColor,
+    // Sage is a green-grey neutral scale: surfaces and borders read cooler and
+    // calmer than pure grey. Only applies until the user picks their own.
+    defaultNeutralColor = 'sage',
     globalCDN,
     customFontURL,
     customFontFamily,
@@ -187,6 +189,9 @@ const AppTheme = memo<AppThemeProps>(
           theme={{
             cssVar: { key: 'lobe-vars' },
             token: {
+              borderRadius: 10,
+              borderRadiusLG: 14,
+              borderRadiusSM: 8,
               fontFamily,
               fontFamilyCode,
               motion: animationMode !== 'disabled',

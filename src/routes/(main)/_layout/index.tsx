@@ -15,6 +15,7 @@ import { BANNER_HEIGHT } from '@/features/AlertBanner/CloudBanner';
 import DesktopLayoutContainer from '@/features/DesktopLayoutContainer';
 import AuthRequiredModal from '@/features/Electron/AuthRequiredModal';
 import HotkeyHelperPanel from '@/features/HotkeyHelperPanel';
+import { useAutoCollapseNavPanel } from '@/features/NavPanel/hooks/useAutoCollapseNavPanel';
 import NavPanelShell from '@/features/NavPanel/Shell';
 import { DndContextWrapper } from '@/features/ResourceManager/DndContextWrapper';
 import { RouteMetaBridge } from '@/features/RouteMeta';
@@ -40,6 +41,7 @@ const GlobalApprovalNotification = dynamic(() => import('@/features/GlobalApprov
 const Layout: FC = () => {
   const { isPWA } = usePlatform();
   const { showCloudPromotion } = useServerConfigStore(featureFlagsSelectors);
+  useAutoCollapseNavPanel();
 
   return (
     <HotkeysProvider initiallyActiveScopes={[HotkeyScopeEnum.Global]}>

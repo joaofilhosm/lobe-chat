@@ -16,8 +16,10 @@ import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfi
 
 const styles = createStaticStyles(({ css, cssVar }) => ({
   active: css`
+    color: var(--app-accent, ${cssVar.colorPrimary});
+
     svg {
-      fill: color-mix(in srgb, ${cssVar.colorPrimary} 33%, transparent);
+      fill: color-mix(in srgb, var(--app-accent, ${cssVar.colorPrimary}) 22%, transparent);
     }
   `,
   container: css`
@@ -25,6 +27,24 @@ const styles = createStaticStyles(({ css, cssVar }) => ({
     z-index: 100;
     inset-block-end: 0;
     inset-inline: 0;
+
+    border-block-start: 1px solid ${cssVar.colorBorderSecondary};
+
+    background: color-mix(in srgb, ${cssVar.colorBgContainer} 82%, transparent);
+    backdrop-filter: saturate(1.4) blur(16px);
+
+    /* Thumb-sized targets: every tab is at least 44px tall and wide. */
+    button,
+    [role='tab'],
+    a {
+      min-block-size: 44px;
+      min-inline-size: 44px;
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      background: ${cssVar.colorBgContainer};
+      backdrop-filter: none;
+    }
   `,
 }));
 

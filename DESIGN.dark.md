@@ -66,9 +66,9 @@ spacing:
   XL: 32
 radius:
   borderRadiusXS: 4
-  borderRadiusSM: 6
-  borderRadius: 8
-  borderRadiusLG: 12
+  borderRadiusSM: 8
+  borderRadius: 10
+  borderRadiusLG: 14
 controls:
   controlHeightSM: 28
   controlHeight: 36
